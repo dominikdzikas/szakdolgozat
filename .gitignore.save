@@ -1,0 +1,13 @@
+# Colcon / ROS2 build artefacts
+build/
+install/
+log/
+
+# Python cache
+**/__pycache__/
+*.pyc
+*.pyo
+
+# VS Code
+.vscode/
+

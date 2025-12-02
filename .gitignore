@@ -1,0 +1,21 @@
+# ROS2 colcon build artefacts
+build/
+install/
+log/
+dataset/
+bev_node_test.py
+config/
+test.py
+bdd100k_prepare.py
+*.png
+*.yaml
+*.pth
+
+# Python cache
+**/__pycache__/
+*.pyc
+*.pyo
+
+# VS Code beállítások
+.vscode/
+
