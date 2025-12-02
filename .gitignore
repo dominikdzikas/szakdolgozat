@@ -4,6 +4,8 @@ install/
 log/
 dataset/
 bev_node_test.py
+camera_info_publisher.py
+rectify_node.py
 config/
 test.py
 bdd100k_prepare.py
