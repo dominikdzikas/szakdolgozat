@@ -2,7 +2,7 @@
 
 Ez a repository a BSc szakdolgozatomhoz készült:
 
-**Konvolúciós neurális háló alapú vezethető útfelület meghatározása ROS 2 környezetben**
+**Konvolúciós neurális háló-alapú vezethető útfelület meghatározása ROS 2-ben**
 
 A projekt célja a **vezethető útfelület detektálása kameraképekből**, majd az eredmény **Bird’s-Eye View (felülnézeti nézet)** transzformációja és vizualizálása **RViz 2-ben**.
 
@@ -96,11 +96,11 @@ training/            # tanításhoz szükséges kódok
 ## 🛠️ Build
 
 ```bash
-cd ~/ros2_ws/src
+cd ~
 git clone https://github.com/dominikdzikas/szakdolgozat.git
 
-cd ~/ros2_ws
-colcon build
+cd ~/szakdolgozat
+colcon build --symlink-install
 
 source /opt/ros/humble/setup.bash
 source install/setup.bash
@@ -111,8 +111,9 @@ source install/setup.bash
 
 ```bash
 ros2 launch road_launch full_pipeline.launch.py
-Ez elindítja a teljes pipeline-t, beleértve a vizualizációt RViz-ben.
 ```
+Ez elindítja a teljes pipeline-t, beleértve a vizualizációt RViz-ben.
+
 ---
 
 ## 🧪 Modell
@@ -142,11 +143,19 @@ A training/ mappa tartalmazza:
 - modell definíciót
 - kiértékelést
 
-Alkalmazott módszerek:
+### Alkalmazott módszerek
 
-- BCE loss
-- Dice loss
-- checkpoint mentés
+- **Binary Cross-Entropy (BCE) loss**  
+  A pixel szintű bináris osztályozás optimalizálására.
+
+- **Dice loss**  
+  A szegmentáció minőségének javítására, különösen az osztályok közötti egyensúlytalanság esetén.
+
+- **Adam optimalizálás**  
+  A modell súlyainak hatékony frissítésére adaptív tanulási rátával.
+
+- **Checkpoint mentés**  
+  A tanítás során a legjobb modell súlyainak elmentése a későbbi kiértékeléshez és inferenciához.
 
 ---
 
@@ -154,19 +163,19 @@ Alkalmazott módszerek:
 
 A projekt egy autonóm jármű érzékelési modulját modellezi:
 
--útfelület detektálás
--jelenetértelmezés
--felülnézeti vetítés
--vizualizáció debug célokra
+- útfelület detektálás
+- jelenetértelmezés
+- felülnézeti vetítés
+- vizualizáció debug célokra
 
 ---
 
 ## 🔮 Továbbfejlesztési lehetőségek
--valós idejű kamera integráció
--kvantitatív kiértékelés (pl. LiDAR referencia)
--modell optimalizálás
--pontosabb kalibráció
--szenzorfúzió
+- valós idejű kamera integráció
+- kvantitatív kiértékelés (pl. LiDAR referencia)
+- modell optimalizálás
+- pontosabb kalibráció
+- szenzorfúzió
 
 ---
 
@@ -174,19 +183,19 @@ A projekt egy autonóm jármű érzékelési modulját modellezi:
 
 A projekt a szakdolgozatom részeként készült, amelynek fő témái:
 
--mélytanulás képfeldolgozásban
--ROS 2 alapú rendszerek
--autonóm járművek érzékelése
+- mélytanulás képfeldolgozásban
+- ROS 2 alapú rendszerek
+- autonóm járművek érzékelése
 
 ---
 
-👤 Szerző
+## 👤 Szerző
 
 Dzikas Dominik
 https://github.com/dominikdzikas
 
 ---
 
-⚠️ Megjegyzések
--Egyes fájlok (modell, konfiguráció, bemenet) lokális beállítást igényelhetnek
--A projekt elsősorban kutatási és demonstrációs célokat szolgál
+## ⚠️ Megjegyzések
+- Egyes fájlok (modell, konfiguráció, bemenet) lokális beállítást igényelhetnek
+- A projekt elsősorban kutatási és demonstrációs célokat szolgál
