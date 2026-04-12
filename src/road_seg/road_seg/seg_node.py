@@ -19,7 +19,7 @@ class CNNSegNode(Node):
     def __init__(self):
         super().__init__("seg_node")
 
-        self.model_path = Path('/home/dominikdzikas/szakdolgozat/training/best_unet.pth')
+        self.model_path = Path('/home/dominikdzikas/szakdolgozat/training/best_dice_bce_dice.pth')
         self.input_topic = '/camera/image_raw'
         self.mask_topic = '/road/mask_cnn'
         self.overlay_topic = '/road/mask_overlay'

@@ -25,6 +25,7 @@ setup(
         'camera_publisher = my_markers.camera_publisher:main',
         'rectify_node = my_markers.rectify_node:main',
         'marker_node = my_markers.marker_node:main',
+        'video_publisher = my_markers.video_publisher:main',
     ],
     },
 )

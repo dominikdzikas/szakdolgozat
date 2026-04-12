@@ -11,17 +11,16 @@ from cv_bridge import CvBridge
 class Camera_callibration(Node):
     def __init__(self):
         super().__init__("camera_publisher")
-        time_period = 1.0/30.0
+        time_period = 1.0/10.0
         self.cap = cv2.VideoCapture(2)
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
         self.cap.set(cv2.CAP_PROP_FPS, 30)
         if not self.cap.isOpened():
             self.get_logger().error("Nem tudtam megnyitni a kamerát.")
         self.br = CvBridge()
         self.pub = self.create_publisher(Image, "/camera/image_raw", 10)
         self.timer = self.create_timer(time_period, self.timer_callback)
-
 
     def timer_callback(self):
         ret, frame = self.cap.read()

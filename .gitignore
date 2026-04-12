@@ -3,6 +3,8 @@ build/
 install/
 log/
 dataset/
+evaluation/
+chackpoinrs/
 bev_node_test.py
 camera_info_publisher.py
 rectify_node.py

@@ -1,6 +1,6 @@
 import cv2, numpy as np, yaml, sys, os
 
-img_path = "/home/dominikdzikas/datasets/road_seg/images/5f697884-87beee07.jpg"
+img_path = "/home/dominikdzikas/2011_09_26_drive_0002_sync/2011_09_26/2011_09_26_drive_0002_sync/image_03/data/0000000038.png"
 dst_W, dst_H = 720, 480   # BEV kimenet (szabadon állítható)
 
 img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)

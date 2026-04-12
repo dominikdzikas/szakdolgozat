@@ -6,8 +6,8 @@ def generate_launch_description():
     # Kamera node
     camera_node = Node(
         package="my_markers",
-        executable="png_reader",
-        name="png_reader",
+        executable="video_publisher",
+        name="video_publisher",
         output="screen"
     )
 
