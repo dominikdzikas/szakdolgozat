@@ -37,7 +37,7 @@ A projekt egy egyszerű autonóm jármű érzékelési pipeline működését mo
 [marker_node]
         ↓
 RViz 2 vizualizáció
-
+```
 ---
 
 ## ⚙️ Komponensek
@@ -104,7 +104,7 @@ colcon build
 
 source /opt/ros/humble/setup.bash
 source install/setup.bash
-
+```
 ---
 
 ## ▶️ Futtatás
@@ -112,7 +112,7 @@ source install/setup.bash
 ```bash
 ros2 launch road_launch full_pipeline.launch.py
 Ez elindítja a teljes pipeline-t, beleértve a vizualizációt RViz-ben.
-
+```
 ---
 
 ## 🧪 Modell
