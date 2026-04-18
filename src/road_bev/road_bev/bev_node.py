@@ -44,8 +44,14 @@ class BEVNode(Node):
         try:
             mask = self.bridge.imgmsg_to_cv2(msg, desired_encoding="mono8")
 
-            bev = cv2.warpPerspective(mask, self.h_matrix, (self.bev_width, self.bev_height),
-                                      flags=cv2.INTER_NEAREST)
+            bev = cv2.warpPerspective(
+                mask,
+                self.h_matrix,
+                (self.bev_width, self.bev_height),
+                flags=cv2.INTER_NEAREST
+            )
+
+            bev = cv2.rotate(bev, cv2.ROTATE_90_CLOCKWISE)
 
             bev_msg = self.bridge.cv2_to_imgmsg(bev, encoding="mono8")
             bev_msg.header = msg.header

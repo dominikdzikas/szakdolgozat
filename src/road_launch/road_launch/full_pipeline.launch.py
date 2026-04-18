@@ -27,6 +27,13 @@ def generate_launch_description():
         output="screen"
     )
 
+    lidar_ground_truth_node = Node(
+        package="road_bev",
+        executable="lidar_ground_truth",
+        name="lidar_ground_truth",
+        output="screen"
+    )
+
     # Marker node (MarkerArray)
     marker_node = Node(
         package="my_markers",
@@ -47,6 +54,7 @@ def generate_launch_description():
         camera_node,
         seg_node,
         bev_node,
+        lidar_ground_truth_node,
         marker_node,
         rviz_node
     ])

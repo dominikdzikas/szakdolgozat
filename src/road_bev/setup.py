@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'bev_node = road_bev.bev_node:main',
+            "lidar_ground_truth = road_bev.lidar_ground_truth:main"
         ],
     },
 )

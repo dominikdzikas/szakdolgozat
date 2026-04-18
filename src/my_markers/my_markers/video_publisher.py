@@ -9,7 +9,7 @@ class VideoPublisher(Node):
         super().__init__("video_publisher")
         
         # 1. Videófájl megnyitása
-        self.video_path = "/home/dominikdzikas/szakdolgozat/kitti_output.mp4"
+        self.video_path = "/home/dominikdzikas/szakdolgozat/szechenyi_output.mp4"
         self.cap = cv2.VideoCapture(self.video_path)
         
         if not self.cap.isOpened():

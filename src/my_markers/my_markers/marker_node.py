@@ -24,13 +24,15 @@ class CNNBEVMarkerNode(Node):
         # px méter skála a BEV-en
         self.METERS_PER_PX_X = 0.01
         self.METERS_PER_PX_Y = 0.01
-
+        self.X_OFFSET_M = 5.0
+        self.Y_OFFSET_M = -5.0
+        self.SCALE = 0.85   # 2x nagyobb méretű BEV-hez (opcionális)
         self.bridge = CvBridge()
         self.pub = self.create_publisher(MarkerArray, self.output_topic, 10)
         self.sub = self.create_subscription(Image, self.input_topic, self.callback, 10)
 
         self.marker_ns = "bev_contours"
-        self.get_logger().info("✅ cnn_bev_marker_node elindult")
+        self.get_logger().info("cnn_bev_marker_node elindult")
         self.get_logger().info(f"Input:  {self.input_topic}")
         self.get_logger().info(f"Output: {self.output_topic} (MarkerArray)")
 
@@ -38,9 +40,11 @@ class CNNBEVMarkerNode(Node):
         self.seq = 0
 
     #BEV pixel -> 2D világ (m) (origó: alul-közép; +Y előre, +X jobbra) ---
+    
+
     def pix_to_xy(self, u, v, W, H):
-        x = (u - (W / 2.0)) * self.METERS_PER_PX_X
-        y = (H - 1 - v) * self.METERS_PER_PX_Y
+        x = ((u - (W / 2.0)) * self.METERS_PER_PX_X) * self.SCALE + self.X_OFFSET_M
+        y = ((H - 1 - v) * self.METERS_PER_PX_Y) * self.SCALE + self.Y_OFFSET_M
         return x, y
 
     def callback(self, msg: Image):
