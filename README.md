@@ -38,10 +38,17 @@ A projekt egy egyszerű autonóm jármű érzékelési pipeline működését mo
         ↓
 RViz 2 vizualizáció
 ```
+- Kamera kép beolvasása
+- CNN alapú szegmentáció (út / nem út)
+- Perspektíva transzformáció
+- RViz marker vizualizáció
 ---
 
 ## ⚙️ Komponensek
 
+- **camera_node**  
+  Teszteléshez biztosít bemeneti képet.
+  
 - **seg_node**  
   U-Net alapú neurális háló segítségével meghatározza az útfelületet a bemeneti képen.
 
@@ -50,9 +57,6 @@ RViz 2 vizualizáció
 
 - **marker_node**  
   A BEV maszkból vizualizációs elemeket (MarkerArray) generál RViz számára.
-
-- **png_reader / image source**  
-  Teszteléshez biztosít bemeneti képet.
 
 ---
 
@@ -85,10 +89,9 @@ training/            # tanításhoz szükséges kódok
 
 - Ubuntu 22.04
 - ROS 2 Humble
-- Python 3
+- Python 3.10
 - PyTorch
 - OpenCV
-- cv_bridge
 - RViz 2
 
 ---
@@ -113,6 +116,7 @@ source install/setup.bash
 ros2 launch road_launch full_pipeline.launch.py
 ```
 Ez elindítja a teljes pipeline-t, beleértve a vizualizációt RViz-ben.
+<img width="888" height="694" alt="image" src="https://github.com/user-attachments/assets/8309e346-3b28-43c9-8be2-c0c006d9aaf3" />
 
 ---
 
