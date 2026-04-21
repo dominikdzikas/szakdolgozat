@@ -19,7 +19,17 @@ class CNNSegNode(Node):
     def __init__(self):
         super().__init__("seg_node")
 
-        self.model_path = Path('/home/dominikdzikas/szakdolgozat/training/best_dice_bce_dice.pth')
+        self.declare_parameter("model_path", "")
+        self.model_path = Path(self.get_parameter("model_path").value)
+
+        if str(self.model_path) == "":
+            self.get_logger().error("A 'model_path' paraméter nincs megadva.")
+            raise RuntimeError("Missing required parameter: model_path")
+
+        if not self.model_path.is_file():
+            self.get_logger().error(f"A modellfájl nem található: {self.model_path}")
+            raise FileNotFoundError(str(self.model_path))
+        
         self.input_topic = '/camera/image_raw'
         self.mask_topic = '/road/mask_cnn'
         self.overlay_topic = '/road/mask_overlay'

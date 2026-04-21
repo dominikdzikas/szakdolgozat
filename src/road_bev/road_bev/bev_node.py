@@ -15,7 +15,16 @@ class BEVNode(Node):
 
         self.input_topic = "/road/mask_cnn"
         self.output_topic = "/road/bev_mask"
-        self.param_file = "/home/dominikdzikas/szakdolgozat/src/road_bev/config/bev.yaml"
+        self.declare_parameter("bev_config", "")
+        self.param_file = self.get_parameter("bev_config").value
+
+        if not self.param_file:
+            self.get_logger().error("A 'bev_config' paraméter nincs megadva.")
+            raise RuntimeError("Missing required parameter: bev_config")
+
+        if not os.path.exists(self.param_file):
+            self.get_logger().error(f"BEV paraméterfájl nem található: {self.param_file}")
+            raise FileNotFoundError(self.param_file)
 
         self.bridge = CvBridge()
 
