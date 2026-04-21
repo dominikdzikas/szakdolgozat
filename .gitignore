@@ -5,6 +5,9 @@ log/
 dataset/
 evaluation/
 chackpoinrs/
+kitti_output.mp4
+szechenyi_output.mp4
+lidar_frame_000.npy
 bev_node_test.py
 camera_info_publisher.py
 rectify_node.py
