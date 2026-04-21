@@ -21,7 +21,7 @@ Y_MAX = 10.0
 Z_MIN = -2.2
 Z_MAX = -1.0
 
-FRAME_ID = "base_link"   # vagy lidar_link, ami nálad helyes
+FRAME_ID = "base_link"   
 FPS = 10.0
 
 
@@ -44,18 +44,16 @@ class GroundTruthPlayer(Node):
     def load_points(self, path: Path) -> np.ndarray:
         data = np.load(path)
 
-        # igazítsd a saját fájlstruktúrádhoz
+        
         if "points" in data:
             pts = data["points"]
         else:
-            # ha csak egy tömb van benne
             key = list(data.keys())[0]
             pts = data[key]
 
         return pts
 
     def ground_filter(self, pts: np.ndarray) -> np.ndarray:
-        # ha intenzitás is van, csak az első 3 oszlop kell
         xyz = pts[:, :3]
 
         mask = (
@@ -86,7 +84,7 @@ class GroundTruthPlayer(Node):
 
         self.index += 1
         if self.index >= len(self.files):
-            self.index = 0   # loop
+            self.index = 0   
 
 
 def main():
