@@ -77,11 +77,13 @@ training/            # tanításhoz szükséges kódok
 ### Bemenet
 - `/camera/image_raw`
 
-### Köztes eredmény
+### Köztes eredmények
 - `/road/mask_cnn`
+- `/road/mask_overlay`
 
 ### Kimenet
 - `/road/bev_mask`
+- `/road/markers`
 
 ---
 
@@ -113,8 +115,16 @@ source install/setup.bash
 ## ▶️ Futtatás
 
 ```bash
-ros2 launch road_launch full_pipeline.launch.py
+ros2 launch road_launch full_pipeline.launch.py \
+video_path:=/home/felhasznalo/eleresi_ut/szechenyi_output.mp4 \
+model_path:=/home/felhasznalo/eleresi_ut/best_dice_bce_dice.pth \
+bev_config:=/home/felhasznalo/eleresi_ut/bev.yaml
 ```
+Paraméterek:
+- `video_path`: a bemeneti videófájl elérési útja
+- `model_path`: a betanított U-Net checkpoint (`.pth`) elérési útja
+- `bev_config`: a BEV transzformáció paramétereit tartalmazó YAML fájl elérési útja
+
 Ez elindítja a teljes pipeline-t, beleértve a vizualizációt RViz-ben.
 <img width="888" height="694" alt="image" src="https://github.com/user-attachments/assets/8309e346-3b28-43c9-8be2-c0c006d9aaf3" />
 
