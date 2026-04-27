@@ -26,3 +26,5 @@ bdd100k_prepare.py
 # VS Code beállítások
 .vscode/
 
+# Allowd files
+!road_bev/config/bev.yaml
